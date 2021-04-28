@@ -1,0 +1,17 @@
+хомяк small
+дегу small
+попугай middle
+крыса small
+игуана middle
+хамелион small
+канарейка small
+еж small
+шиншилла small
+хорек small
+кролик small
+енот middle
+мини-пиг middle
+кот middle
+кошка middle
+питон big
+собака no_difference
