@@ -1,14 +1,14 @@
 package vet_clinic_generator;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -18,7 +18,7 @@ public class Utils {
     final static String COMMA_SEPARATOR = ",";
     public final static String DB_CONNECTING_ERROR = "Error while connecting to DB";
     final static String FILE_NOT_FOUND_ERROR = "File not found";
-    final static String SERIALIZABLE_ERROR = "40001";
+    public final static String SERIALIZABLE_ERROR = "40001";
 
     final static String USER = "postgres";
     final static String password = "12345";
@@ -32,6 +32,19 @@ public class Utils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Connection getConnection(int isolationLvl) {
+        Connection connection = getConnection();
+        if (connection != null) {
+            try {
+                connection.setTransactionIsolation(isolationLvl);
+            } catch (SQLException e) {
+                System.out.println(Utils.DB_CONNECTING_ERROR);
+                e.printStackTrace();
+            }
+        }
+        return  connection;
     }
 
     public static void deleteAllInfo() {
@@ -175,8 +188,10 @@ public class Utils {
     }
 
     public static void writeDataForTimes(String path, List<Long> data) {
+        List<Long> list_data = new LinkedList<>();
+        data.forEach(it -> list_data.add(0, it));
         try (FileWriter writer = new FileWriter(path, false)) {
-            for (Long data_: data) {
+            for (Long data_: list_data) {
                 writer.write(data_ / 1000000.0 + "\n");
             }
         } catch (IOException e) {
@@ -184,9 +199,11 @@ public class Utils {
         }
     }
 
-    public static void writeDataForCounts(String path, List<Long> data) {
+    public static void writeDataForCounts(String path, List<Integer> data) {
+        List<Integer> list_data = new LinkedList<>();
+        data.forEach(it -> list_data.add(0, it));
         try (FileWriter writer = new FileWriter(path, false)) {
-            for (Long data_: data) {
+            for (Integer data_: list_data) {
                 writer.write(data_ + "\n");
             }
         } catch (IOException e) {

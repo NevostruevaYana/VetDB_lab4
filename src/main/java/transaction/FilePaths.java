@@ -1,17 +1,17 @@
 package transaction;
 
 public class FilePaths {
-    public final static String TIME_INSERT_300_PATH_READ_COMMITTED =
-            "src/transactionOutFiles/readCommitted/timeInsert300.txt";
-    public final static String TIME_SELECT_300_PATH_READ_COMMITTED =
-            "src/transactionOutFiles/readCommitted/timeSelect300.txt";
-    public final static String TIME_UPDATE_300_PATH_READ_COMMITTED =
-            "src/transactionOutFiles/readCommitted/timeUpdate300.txt";
+    public final static String TIME_INSERT_3000_PATH_READ_COMMITTED =
+            "src/transactionOutFiles/readCommitted/timeInsert3000.txt";
+    public final static String TIME_SELECT_3000_PATH_READ_COMMITTED =
+            "src/transactionOutFiles/readCommitted/timeSelect3000.txt";
+    public final static String TIME_UPDATE_3000_PATH_READ_COMMITTED =
+            "src/transactionOutFiles/readCommitted/timeUpdate3000.txt";
 
-    public final static String COUNT_SELECT_300_PATH_READ_COMMITTED =
-            "src/transactionOutFiles/readCommitted/countSelect300.txt";
-    public final static String COUNT_UPDATE_300_PATH_READ_COMMITTED =
-            "src/transactionOutFiles/readCommitted/countUpdate300.txt";
+    public final static String COUNT_SELECT_3000_PATH_READ_COMMITTED =
+            "src/transactionOutFiles/readCommitted/countSelect3000.txt";
+    public final static String COUNT_UPDATE_3000_PATH_READ_COMMITTED =
+            "src/transactionOutFiles/readCommitted/countUpdate3000.txt";
 
     public final static String TIME_INSERT_800_PATH_READ_COMMITTED =
             "src/transactionOutFiles/readCommitted/timeInsert800.txt";
@@ -25,17 +25,17 @@ public class FilePaths {
     public final static String COUNT_UPDATE_800_PATH_READ_COMMITTED =
             "src/transactionOutFiles/readCommitted/countUpdate800.txt";
 
-    public final static String TIME_INSERT_300_PATH_REPEATABLE_READ =
-            "src/transactionOutFiles/repeatableRead/timeInsert300.txt";
-    public final static String TIME_SELECT_300_PATH_REPEATABLE_READ =
-            "src/transactionOutFiles/repeatableRead/timeSelect300.txt";
-    public final static String TIME_UPDATE_300_PATH_REPEATABLE_READ =
-            "src/transactionOutFiles/repeatableRead/timeUpdate300.txt";
+    public final static String TIME_INSERT_3000_PATH_REPEATABLE_READ =
+            "src/transactionOutFiles/repeatableRead/timeInsert3000.txt";
+    public final static String TIME_SELECT_3000_PATH_REPEATABLE_READ =
+            "src/transactionOutFiles/repeatableRead/timeSelect3000.txt";
+    public final static String TIME_UPDATE_3000_PATH_REPEATABLE_READ =
+            "src/transactionOutFiles/repeatableRead/timeUpdate3000.txt";
 
-    public final static String COUNT_SELECT_300_PATH_REPEATABLE_READ =
-            "src/transactionOutFiles/repeatableRead/countSelect300.txt";
-    public final static String COUNT_UPDATE_300_PATH_REPEATABLE_READ =
-            "src/transactionOutFiles/repeatableRead/countUpdate300.txt";
+    public final static String COUNT_SELECT_3000_PATH_REPEATABLE_READ =
+            "src/transactionOutFiles/repeatableRead/countSelect3000.txt";
+    public final static String COUNT_UPDATE_3000_PATH_REPEATABLE_READ =
+            "src/transactionOutFiles/repeatableRead/countUpdate3000.txt";
 
     public final static String TIME_INSERT_800_PATH_REPEATABLE_READ =
             "src/transactionOutFiles/repeatableRead/timeInsert800.txt";
@@ -49,17 +49,17 @@ public class FilePaths {
     public final static String COUNT_UPDATE_800_PATH_REPEATABLE_READ =
             "src/transactionOutFiles/repeatableRead/countUpdate800.txt";
 
-    public final static String TIME_INSERT_300_PATH_SERIALIZABLE =
-            "src/transactionOutFiles/serializable/timeInsert300.txt";
-    public final static String TIME_SELECT_300_PATH_SERIALIZABLE =
-            "src/transactionOutFiles/serializable/timeSelect300.txt";
-    public final static String TIME_UPDATE_300_PATH_SERIALIZABLE =
-            "src/transactionOutFiles/serializable/timeUpdate300.txt";
+    public final static String TIME_INSERT_3000_PATH_SERIALIZABLE =
+            "src/transactionOutFiles/serializable/timeInsert3000.txt";
+    public final static String TIME_SELECT_3000_PATH_SERIALIZABLE =
+            "src/transactionOutFiles/serializable/timeSelect3000.txt";
+    public final static String TIME_UPDATE_3000_PATH_SERIALIZABLE =
+            "src/transactionOutFiles/serializable/timeUpdate3000.txt";
 
-    public final static String COUNT_SELECT_300_PATH_SERIALIZABLE =
-            "src/transactionOutFiles/serializable/countSelect300.txt";
-    public final static String COUNT_UPDATE_300_PATH_SERIALIZABLE =
-            "src/transactionOutFiles/serializable/countUpdate300.txt";
+    public final static String COUNT_SELECT_3000_PATH_SERIALIZABLE =
+            "src/transactionOutFiles/serializable/countSelect3000.txt";
+    public final static String COUNT_UPDATE_3000_PATH_SERIALIZABLE =
+            "src/transactionOutFiles/serializable/countUpdate3000.txt";
 
     public final static String TIME_INSERT_800_PATH_SERIALIZABLE =
             "src/transactionOutFiles/serializable/timeInsert800.txt";
