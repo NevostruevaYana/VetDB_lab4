@@ -1,16 +1,18 @@
 package vet_clinic_generator;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.sql.Date;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Utils {
 
@@ -19,6 +21,9 @@ public class Utils {
     public final static String DB_CONNECTING_ERROR = "Error while connecting to DB";
     final static String FILE_NOT_FOUND_ERROR = "File not found";
     public final static String SERIALIZABLE_ERROR = "40001";
+    private static final Random RANDOM = new SecureRandom();
+    private static final int ITERATIONS = 10000;
+    private static final int KEY_LENGTH = 256;
 
     final static String USER = "postgres";
     final static String password = "12345";
@@ -131,7 +136,7 @@ public class Utils {
         return dates;
     }
 
-    public static String passwordAndSN(int amount, String str) {
+    public static String generatePasswordForEquipment(int amount, String str) {
         StringBuilder password = new StringBuilder();
         for (int i = 0; i <= amount; i++) {
             if (Utils.getRand(0, 2) == 1) {
@@ -141,6 +146,34 @@ public class Utils {
             }
         }
         return password.toString();
+    }
+
+    public static char[] generatePasswordForWorkers(int amount, String str) {
+        char[] password = new char[8];
+        for (int i = 0; i < amount; i++) {
+            password[i] = str.charAt(new Random().nextInt(str.length() - 1));
+        }
+        for (char c : password) System.out.println(c);
+        return password;
+    }
+
+    protected static byte[] getSalt() {
+        byte[] salt = new byte[32];
+        RANDOM.nextBytes(salt);
+        return salt;
+    }
+
+    protected static byte[] getHash(char[] password, byte[] salt) {
+        PBEKeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, KEY_LENGTH);
+        Arrays.fill(password, Character.MIN_VALUE);
+        try {
+            final SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+            return skf.generateSecret(spec).getEncoded();
+        } catch (InvalidKeySpecException | java.security.NoSuchAlgorithmException e) {
+            throw new AssertionError("Error while hashing a password: " + e.getMessage(), e);
+        } finally {
+            spec.clearPassword();
+        }
     }
 
     public static int lineCounter(String path) {
@@ -199,15 +232,4 @@ public class Utils {
         }
     }
 
-    public static void writeDataForCounts(String path, List<Integer> data) {
-        List<Integer> list_data = new LinkedList<>();
-        data.forEach(it -> list_data.add(0, it));
-        try (FileWriter writer = new FileWriter(path, false)) {
-            for (Integer data_: list_data) {
-                writer.write(data_ + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

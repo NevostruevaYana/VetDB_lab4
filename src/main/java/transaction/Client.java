@@ -1,6 +1,7 @@
 package transaction;
 
 public class Client {
+
     private String full_name;
     private String address;
     private String phone;

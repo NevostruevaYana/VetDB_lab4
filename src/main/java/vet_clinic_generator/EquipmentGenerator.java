@@ -24,7 +24,7 @@ public class EquipmentGenerator {
                 String[] services_array = services.split(COMMA_SEPARATOR);
                 for (String service: services_array) {
                     insertEquipment(service, equipment, getRandomData(MANUFACTURER_PATH),
-                                getDate("for_write_off"), passwordAndSN(17, "ABCDEFGHIGKLMNOPQRSTVUWXYZ"));
+                                getDate("for_write_off"), generatePasswordForEquipment(17, "ABCDEFGHIGKLMNOPQRSTVUWXYZ"));
 
                 }
             });
