@@ -221,10 +221,8 @@ public class Utils {
     }
 
     public static void writeDataForTimes(String path, List<Long> data) {
-        List<Long> list_data = new LinkedList<>();
-        data.forEach(it -> list_data.add(0, it));
         try (FileWriter writer = new FileWriter(path, false)) {
-            for (Long data_: list_data) {
+            for (Long data_: data) {
                 writer.write(data_ / 1000000.0 + "\n");
             }
         } catch (IOException e) {

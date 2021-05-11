@@ -28,7 +28,7 @@ public class Transactions {
                         flag = true;
                 }
             } while (flag);
-            insert_time_.add(0, System.nanoTime() - start);
+            insert_time_.add(System.nanoTime() - start);
         }
         closeConnection(connection);
         return insert_time_;
@@ -48,7 +48,7 @@ public class Transactions {
                         flag = true;
                 }
             } while (flag);
-            select_time.add(0, System.nanoTime() - start);
+            select_time.add(System.nanoTime() - start);
         }
         closeConnection(connection);
         return select_time;
@@ -68,7 +68,7 @@ public class Transactions {
                         flag = true;
                 }
             } while (flag);
-            update_time.add(0, System.nanoTime() - start);
+            update_time.add(System.nanoTime() - start);
         }
         closeConnection(connection);
         return update_time;
