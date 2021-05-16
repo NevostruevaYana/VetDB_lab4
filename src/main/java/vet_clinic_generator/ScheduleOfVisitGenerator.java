@@ -32,27 +32,29 @@ public class ScheduleOfVisitGenerator {
             System.out.println(DB_CONNECTING_ERROR);
             e.printStackTrace();
         }
-        int i = 0;
-        for (String id : pets_id) {
-            if (getRand(0,2) == 1) {
-                String client_id = clients_id.get(i);
-                String worker_id = workers_id.get(getRand(0, workers_id.size()));
-                ArrayList<String> offices_id = new ArrayList<>();
-                int j = 0;
-                for (String id_ : workers_id_in_wo)  {
-                    if (id_.equals(worker_id)) {
-                        offices_id.add(offices_id_in_wo.get(j));
+        for (int k = 0; k < 1000; k++) {
+            int i = 0;
+            for (String id : pets_id) {
+                if (getRand(0, 2) == 1) {
+                    String client_id = clients_id.get(i);
+                    String worker_id = workers_id.get(getRand(0, workers_id.size()));
+                    ArrayList<String> offices_id = new ArrayList<>();
+                    int j = 0;
+                    for (String id_ : workers_id_in_wo) {
+                        if (id_.equals(worker_id)) {
+                            offices_id.add(offices_id_in_wo.get(j));
+                        }
+                        j++;
                     }
-                    j++;
+                    if (offices_id.size() != 0) {
+                        String office_id = offices_id.get(getRand(0, offices_id.size()));
+                        insertScheduleOfVisit(id, client_id, office_id,
+                                worker_id, office_id, getDate("for_schedule"), getRand(10, 22),
+                                getRand(1, 6), amount_of_money.get(Integer.parseInt(office_id) - 1));
+                    }
                 }
-                if (offices_id.size() != 0) {
-                    String office_id = offices_id.get(getRand(0, offices_id.size()));
-                    insertScheduleOfVisit(id, client_id, office_id,
-                            worker_id, office_id, getDate("for_schedule"), getRand(10, 22),
-                            getRand(1, 6), amount_of_money.get(Integer.parseInt(office_id) - 1));
-                }
+                i++;
             }
-            i++;
         }
     }
 
@@ -70,7 +72,7 @@ public class ScheduleOfVisitGenerator {
             String[] reasons_list = reasons.split(COMMA_SEPARATOR);
             PreparedStatement ps = connection.prepareStatement(String.format("INSERT INTO schedule_of_visit (pet_id, client_id, office_id," +
                             " worker_id, service_id, reason, date_and_time_of_visit, amount_of_money) VALUES (" +
-                            "'%s','%s','%s','%s','%s','%s','%s %d:%d0:00','%s')", id, client_id, office_id,
+                            "'%s','%s','%s','%s','%s','%s','%s %d:00:00','%s')", id, client_id, office_id,
                     worker_id, service_id, reasons_list[getRand(0, reasons_list.length)], date_of_visit, time_of_visit_1, time_f_visit_2, amount_of_money),
                     Statement.RETURN_GENERATED_KEYS);
             ps.execute();

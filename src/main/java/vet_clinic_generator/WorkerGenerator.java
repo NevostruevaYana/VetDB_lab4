@@ -17,7 +17,7 @@ public class WorkerGenerator {
     public static void generate() {
         String full_name = getRandomData(FULL_NAME_PATH);
         String[] set_for_login = full_name.split(SPACE_SEPARATOR);
-        String login = generatePasswordForEquipment(8, "abcdefghijklmnoqrstvuwxyz");
+        String login = "w" + generatePasswordForEquipment(8, "abcdefghijklmnoqrstvuwxyz");
 //                set_for_login[0].toLowerCase() + "." + set_for_login[1].toLowerCase().charAt(0)
 //                + set_for_login[2].toLowerCase().charAt(0);
         char[] password_ = generatePasswordForWorkers(8, "abcdefghijklmnoqrstvuwxyz");

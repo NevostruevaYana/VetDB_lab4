@@ -18,7 +18,8 @@ public class ClientGenerator {
         String address = String.format("г. Санкт-Петербург, %s, д. %d, кв. %d",
                 getRandomData(STREET_PATH), getRand(1, 100), getRand(1, 700));
         boolean regular = getRand(0, 2) == 1;
-        insertClient(full_name, address, phoneGenerator(), regular);
+        String personal_code = "cl" + generatePasswordForEquipment(8, "abcdefghijklmnoqrstvuwxyz");
+        insertClient(full_name, address, phoneGenerator(), regular, personal_code);
     }
 
     public static ArrayList<Client> returnGeneratedClients(int quantity) {
@@ -33,11 +34,12 @@ public class ClientGenerator {
         return clients;
     }
 
-    private static void insertClient(String full_name, String address, String phone, boolean regular) {
+    private static void insertClient(String full_name, String address, String phone, boolean regular,
+                                     String personal_code) {
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement()) {
-            PreparedStatement ps = connection.prepareStatement(String.format("INSERT INTO client (full_name, address, phone, regular) VALUES (" +
-                    "'%s','%s','%s','%b')", full_name, address, phone, regular), Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = connection.prepareStatement(String.format("INSERT INTO client (full_name, address, phone, regular, personal_code) VALUES (" +
+                    "'%s','%s','%s','%b', '%s')", full_name, address, phone, regular, personal_code), Statement.RETURN_GENERATED_KEYS);
             ps.execute();
             ResultSet res = ps.getGeneratedKeys();
             if (res.next()) {
